@@ -32,7 +32,7 @@ protected:
 	class USoundBase* FireSound;
 
 public:	
-	void Fire();
+	void Fire(FRotator Direction);
 	
 	
 };

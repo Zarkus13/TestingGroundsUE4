@@ -29,7 +29,7 @@ void AGun::BeginPlay()
 	Super::BeginPlay();
 }
 
-void AGun::Fire()
+void AGun::Fire(FRotator Direction)
 {
 	UWorld* const World = GetWorld();
 	if (World && MuzzleLocation)
@@ -43,7 +43,7 @@ void AGun::Fire()
 		ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
 
 		// spawn the projectile at the muzzle
-		World->SpawnActor<AProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+		World->SpawnActor<AProjectile>(ProjectileClass, SpawnLocation, Direction, ActorSpawnParams);
 	}
 
 	if (FireSound != NULL)
