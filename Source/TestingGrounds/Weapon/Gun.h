@@ -32,7 +32,7 @@ protected:
 	class USoundBase* FireSound;
 
 public:	
-	void Fire(FRotator Direction);
+	void Fire(FVector LocationToShoot);
 	
 	
 };

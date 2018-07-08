@@ -15,11 +15,9 @@ UFiringComponent::UFiringComponent()
 }
 
 
-void UFiringComponent::Fire(FRotator Direction)
+void UFiringComponent::Fire(FVector LocationToShoot)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Fire ! Gun : %s"), *Gun->GetName())
-
-	Gun->Fire(Direction);
+	Gun->Fire(LocationToShoot);
 }
 
 void UFiringComponent::SetGun(AGun * Gun)

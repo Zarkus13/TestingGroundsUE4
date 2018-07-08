@@ -29,21 +29,23 @@ void AGun::BeginPlay()
 	Super::BeginPlay();
 }
 
-void AGun::Fire(FRotator Direction)
+void AGun::Fire(FVector LocationToShoot)
 {
 	UWorld* const World = GetWorld();
 	if (World && MuzzleLocation)
 	{
 		// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
-		const FRotator SpawnRotation = MuzzleLocation->GetComponentRotation();
 		const FVector SpawnLocation = ((MuzzleLocation != nullptr) ? MuzzleLocation->GetComponentLocation() : GetActorLocation());
+		//const FRotator SpawnRotation = (LocationToShoot - SpawnLocation).Rotation();
+
+		const FRotator SpawnRotation = (LocationToShoot - SpawnLocation).Rotation();
 
 		//Set Spawn Collision Handling Override
 		FActorSpawnParameters ActorSpawnParams;
 		ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
 
 		// spawn the projectile at the muzzle
-		World->SpawnActor<AProjectile>(ProjectileClass, SpawnLocation, Direction, ActorSpawnParams);
+		World->SpawnActor<AProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 	}
 
 	if (FireSound != NULL)

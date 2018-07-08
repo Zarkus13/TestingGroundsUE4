@@ -16,7 +16,7 @@ public:
 	// Sets default values for this component's properties
 	UFiringComponent();
 
-	void Fire(FRotator Direction);
+	void Fire(FVector LocationToShoot);
 
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void SetGun(class AGun* Gun);

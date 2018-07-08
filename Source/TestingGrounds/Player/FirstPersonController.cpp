@@ -3,6 +3,7 @@
 #include "FirstPersonController.h"
 #include "GameFramework/Pawn.h"
 #include "Player/FiringComponent.h"
+#include "Engine/World.h"
 
 #define OUT
 
@@ -36,6 +37,6 @@ void AFirstPersonController::OnFire() {
 		OUT Direction
 	);
 
-	FiringComponent->Fire(Direction.Rotation());
+	FiringComponent->Fire(WorldLocation + Direction * 1000000);
 }
 

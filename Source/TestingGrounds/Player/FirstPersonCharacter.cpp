@@ -96,11 +96,6 @@ void AFirstPersonCharacter::SetupPlayerInputComponent(class UInputComponent* Pla
 
 void AFirstPersonCharacter::OnFire()
 {
-	if (!Gun)
-		return;
-
-	Gun->Fire(FRotator(0));
-
 	// try and play a firing animation if specified
 	if (FireAnimation != NULL)
 	{
