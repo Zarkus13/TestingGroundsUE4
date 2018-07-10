@@ -32,6 +32,7 @@ protected:
 	class USoundBase* FireSound;
 
 public:	
+	UFUNCTION(BlueprintCallable, Category = "Gameplay")
 	void Fire(FVector LocationToShoot);
 	
 	
