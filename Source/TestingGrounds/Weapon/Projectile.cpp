@@ -22,8 +22,6 @@ AProjectile::AProjectile()
 	// Use a ProjectileMovementComponent to govern this projectile's movement
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileComp"));
 	ProjectileMovement->UpdatedComponent = CollisionComp;
-	ProjectileMovement->InitialSpeed = 15000.f;
-	ProjectileMovement->MaxSpeed = 15000.f;
 	ProjectileMovement->bRotationFollowsVelocity = true;
 	ProjectileMovement->bShouldBounce = false;
 
@@ -31,9 +29,17 @@ AProjectile::AProjectile()
 	InitialLifeSpan = 3.0f;
 }
 
+void AProjectile::Launch() {
+	// ProjectileMovement->InitialSpeed = 15000.f;
+	// ProjectileMovement->MaxSpeed = 15000.f;
+
+	ProjectileMovement->SetVelocityInLocalSpace(FVector::ForwardVector * 15000.f);
+	ProjectileMovement->Activate();
+}
+
 void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	if (OtherActor != NULL && OtherActor->ActorHasTag("Player"))
+	if (OtherActor != NULL && OtherActor->GetName() == ShooterName)
 		return;
 
 	// Only add impulse and destroy projectile if we hit a physics

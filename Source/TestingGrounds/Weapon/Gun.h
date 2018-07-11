@@ -33,7 +33,7 @@ protected:
 
 public:	
 	UFUNCTION(BlueprintCallable, Category = "Gameplay")
-	void Fire(FVector LocationToShoot);
+	void Fire(FVector LocationToShoot, FString ShooterName);
 	
 	
 };

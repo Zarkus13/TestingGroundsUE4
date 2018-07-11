@@ -18,9 +18,12 @@ class AProjectile : public AActor
 	/** Projectile movement component */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Movement, meta = (AllowPrivateAccess = "true"))
 	class UProjectileMovementComponent* ProjectileMovement;
+	
 
 public:
 	AProjectile();
+
+	void Launch();
 
 	/** called when projectile hits something */
 	UFUNCTION()
@@ -28,7 +31,12 @@ public:
 
 	/** Returns CollisionComp subobject **/
 	FORCEINLINE class USphereComponent* GetCollisionComp() const { return CollisionComp; }
+
 	/** Returns ProjectileMovement subobject **/
 	FORCEINLINE class UProjectileMovementComponent* GetProjectileMovement() const { return ProjectileMovement; }
+
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly, Category = "Setup")
+	FString ShooterName;
+
 };
 

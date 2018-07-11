@@ -17,7 +17,7 @@ UFiringComponent::UFiringComponent()
 
 void UFiringComponent::Fire(FVector LocationToShoot)
 {
-	Gun->Fire(LocationToShoot);
+	Gun->Fire(LocationToShoot, GetOwner()->GetName());
 }
 
 void UFiringComponent::SetGun(AGun * Gun)
